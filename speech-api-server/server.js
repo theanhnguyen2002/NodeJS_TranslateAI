@@ -23,7 +23,7 @@ app.post("/api/speech-to-text", upload.single("audio"), async (req, res) => {
       config: {
         encoding: "WEBM_OPUS",
         sampleRateHertz: 48000,
-        languageCode: "vi-VN", // "en-US"
+        languageCode: "vi-VN", // "en-US" nếu cần
       },
     };
 
