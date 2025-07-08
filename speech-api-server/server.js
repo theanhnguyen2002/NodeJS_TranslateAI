@@ -5,14 +5,17 @@ const cors = require("cors");
 const { SpeechClient } = require("@google-cloud/speech");
 
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001;
 const upload = multer({ dest: "uploads/" });
 
 app.use(cors());
 
-const client = new SpeechClient({
-  keyFilename: "./profound-ranger-465218-v8-5a100c67c0ad.json", // key bạn tải về
-});
+// const client = new SpeechClient({
+//   keyFilename: "./profound-ranger-465218-v8-5a100c67c0ad.json", // key bạn tải về
+// });
+
+const credentials = JSON.parse(process.env.GOOGLE_APPLICATION_CREDENTIALS_JSON);
+const client = new SpeechClient({ credentials });
 
 app.post("/api/speech-to-text", upload.single("audio"), async (req, res) => {
   try {
