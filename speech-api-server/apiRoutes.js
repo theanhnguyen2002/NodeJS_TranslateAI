@@ -16,6 +16,10 @@ const ttsClient = new textToSpeech.TextToSpeechClient({
   keyFilename: process.env.GOOGLE_APPLICATION_CREDENTIALS,
 });
 
+// const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
+// const speechClient = new SpeechClient({ credentials });
+// const ttsClient = new textToSpeech.TextToSpeechClient({ credentials });
+
 const upload = multer({ dest: "uploads/" });
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 
@@ -82,7 +86,7 @@ router.post("/speech-to-text", upload.single("audio"), async (req, res) => {
       config: {
         encoding: "WEBM_OPUS",
         sampleRateHertz: 48000,
-        languageCode: "vi-VN",
+        languageCode: req.body.languageCode || "vi-VN",
       },
     });
 
