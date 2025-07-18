@@ -130,7 +130,8 @@ router.post("/text-to-speech", async (req, res) => {
 
 // 🔐 Tạo clientId
 router.get("/get-client-id", (req, res) => {
-  res.json({ clientId: Math.floor(100000 + Math.random() * 900000) });
+  const clientId = Math.floor(100 + Math.random() * 900); // 100 → 999
+  res.json({ clientId });
 });
 
 module.exports = router;
